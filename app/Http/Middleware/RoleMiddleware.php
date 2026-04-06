@@ -1,22 +1,22 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 use Closure;
 use Illuminate\Http\Request;
 
 class RoleMiddleware
 {
-    // Membatasi akses rute berdasarkan param role string dari web.php ('admin'/'siswa')
+
     public function handle(Request $request, Closure $next, string $role)
     {
-        // Tolak jika belum login
-        if (!auth()->check()) {
+
+        if (!auth::check()) {
             return redirect()->route('login');
         }
 
-        // Tolak jika role tidak sesuai 
-        if (auth()->user()->level !== $role) {
+
+        if (auth::user()->level !== $role) {
             abort(403, 'Akses ditolak.');
         }
 

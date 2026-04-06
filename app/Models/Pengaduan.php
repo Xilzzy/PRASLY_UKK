@@ -6,30 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengaduan extends Model
 {
-    // Field yang bisa diisi
+
     protected $fillable = [
         'user_id', 'kategori_id', 'judul_laporan', 'isi_laporan', 'tgl_pengaduan', 'foto', 'status',
     ];
 
-    // Relasi ke User pembuat pengaduan
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi ke tabel Kategori
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
     }
 
-    // Relasi tanggapan yang dimiliki pengaduan ini
+
     public function tanggapan()
     {
         return $this->hasMany(Tanggapan::class);
     }
 
-    // Accessor: Ambil status sebagai elemen badge HTML ({!! $pengaduan->status_label !!})
+
     public function getStatusLabelAttribute()
     {
         $labels = [

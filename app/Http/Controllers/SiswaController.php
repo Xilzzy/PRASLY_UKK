@@ -15,7 +15,7 @@ class SiswaController extends Controller
         return view('admin.siswa.index', compact('siswa'));
     }
 
-    // Simpan siswa baru
+
     public function store(Request $request)
     {
         $request->validate([
@@ -38,7 +38,7 @@ class SiswaController extends Controller
         return redirect()->route('admin.siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
-    // Update data siswa
+
     public function update(Request $request, $id)
     {
         $siswa = User::findOrFail($id);
@@ -57,7 +57,7 @@ class SiswaController extends Controller
             'telp'    => $request->telp,
         ]);
 
-        // Cek jika password diubah
+
         if ($request->filled('password')) {
             $siswa->update(['password' => Hash::make($request->password)]);
         }
@@ -65,7 +65,7 @@ class SiswaController extends Controller
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
-    // Hapus siswa
+
     public function destroy($id)
     {
         User::findOrFail($id)->delete();

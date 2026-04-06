@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // Menampilkan halaman login
+
     public function showLoginForm()
     {
-        // Redirect jika sudah login
+
         if (Auth::check()) {
-            return redirect()->route(auth()->user()->level . '.dashboard');
+            return redirect()->route(auth::user()->level . '.dashboard');
         }
         return view('auth.login');
     }
 
-    // Proses login user
+
     public function login(Request $request)
     {
         $request->validate([
@@ -25,12 +25,11 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        // Cek kecocokan nis_nip & password
+
         if (Auth::attempt(['nis_nip' => $request->nis_nip, 'password' => $request->password])) {
             $request->session()->regenerate();
             $user = Auth::user();
 
-            // Arahkan ke dashboard masing-masing level
             if ($user->level === 'admin') {
                 return redirect()->route('admin.dashboard');
             } else {
@@ -38,13 +37,13 @@ class LoginController extends Controller
             }
         }
 
-        // Kembali ke login jika gagal
+
         return back()->withErrors([
             'nis_nip' => 'NIS/NIP atau Password salah.',
         ])->withInput();
     }
 
-    // Proses logout
+
     public function logout(Request $request)
     {
         Auth::logout();
