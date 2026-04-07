@@ -37,9 +37,8 @@ class KategoriController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy()
     {
-        Kategori::findOrFail($id)->delete();
-        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
+
     }
 }
