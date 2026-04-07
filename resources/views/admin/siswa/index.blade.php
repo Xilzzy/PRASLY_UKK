@@ -117,15 +117,15 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">ID Nomor Induk Siswa</label>
+                        <label class="form-label fw-semibold">NIS</label>
                         <input type="text" class="form-control" name="nis_nip" value="{{ old('nis_nip') }}" required placeholder="Dipergunakan untuk login" style="border-radius: 10px;">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Detail Hak Identitas</label>
+                        <label class="form-label fw-semibold">Nama Lengkap</label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}" required placeholder="Sesuai nama Akte" style="border-radius: 10px;">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Detail Room/Group</label>
+                        <label class="form-label fw-semibold">Kelas Jurusan</label>
                         <input type="text" class="form-control" name="kelas" value="{{ old('kelas') }}" placeholder="Format: 10 RPL 2" style="border-radius: 10px;">
                     </div>
                     <div class="mb-3">
@@ -133,7 +133,7 @@
                         <input type="tel" class="form-control" name="telp" value="{{ old('telp') }}" placeholder="Opsi Tambahan" style="border-radius: 10px;">
                     </div>
                     <div class="mb-0">
-                        <label class="form-label fw-semibold">Pass Key</label>
+                        <label class="form-label fw-semibold">Password</label>
                         <input type="password" class="form-control" name="password" required placeholder="Sandi Default Baru" style="border-radius: 10px;">
                     </div>
                 </div>
