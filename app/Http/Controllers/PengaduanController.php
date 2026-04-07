@@ -43,7 +43,7 @@ class PengaduanController extends Controller
 
         Tanggapan::create([
             'pengaduan_id'  => $id,
-            'user_id'       => auth::id(),
+            'user_id'       => auth()->id(),
             'tgl_tanggapan' => now()->toDateString(),
             'tanggapan'     => $request->tanggapan,
         ]);
@@ -98,10 +98,9 @@ class PengaduanController extends Controller
     }
 
 
-    public function siswaDetail($id)
+    public function siswaDetail()
     {
-        $pengaduan = Pengaduan::with(['kategori', 'tanggapan.user'])->where('user_id', auth::id())->findOrFail($id);
-        return view('siswa.pengaduan.detail', compact('pengaduan'));
+
     }
 
 
@@ -144,16 +143,5 @@ class PengaduanController extends Controller
 
 
 
-    public function destroy($id)
-    {
-        $pengaduan = Pengaduan::where('user_id', auth::id())->findOrFail($id);
 
-        if ($pengaduan->foto && file_exists(public_path('uploads/pengaduan/' . $pengaduan->foto))) {
-            unlink(public_path('uploads/pengaduan/' . $pengaduan->foto));
-        }
-
-        $pengaduan->delete();
-
-        return redirect()->route('siswa.pengaduan.index')->with('success', 'Pengaduan berhasil dihapus.');
-    }
 }
